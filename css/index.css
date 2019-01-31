@@ -1,0 +1,17 @@
+.tac{
+	text-align:center;
+}
+.thumbnails{
+	width:95%;
+	height:190px;
+	padding:5px;
+	border-radius:10px;
+}
+.entity{
+	padding:0px;
+	border-width:1px;
+	margin:1px;
+	border-style:solid;
+	border-color:#8f959e;
+	border-radius:10px;
+}

@@ -1,0 +1,26 @@
+<% include header.ejs %>
+	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="../css/new.css">
+	<div class="container">
+		<div class="jumbotron tac" style="margin-top:20px">
+			<h1>Add New Techs</h1> 
+		</div>
+		<form action="/MoboTech" method="POST">
+			<div class="form-group">
+				<label> Name : </label>
+				<input class="form-control" placeholder="Enter name" name="name">
+			</div>
+			<div class="form-group">
+				<label>Image URL :</label>
+				<input class="form-control" placeholder="Enter Image URL" name="image">
+			</div>
+			<div class="form-group">
+				<label>Image Description :</label>
+				<textarea class="form-control" placeholder="Enter Description" name="description"  rows="10"></textarea>
+			</div>
+			<div class="form-group tac">
+				<button type="submit" class="btn btn-primary" style="width:20%;font-size:20px">CREATE</button>
+			</div>
+		</form>
+	</div>
+<% include footer.ejs %>
