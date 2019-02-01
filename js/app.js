@@ -3,13 +3,17 @@ var app = express()
 var bodyParser = require("body-parser")
 var mongoose = require("mongoose")
 var methodOverride = require("method-override")
+var sanitizer = require("express-sanitizer")
 
 app.set("views","/MoboTech/ejs")
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect('mongodb://localhost:27017/mobo_tech', {useNewUrlParser: true})
 app.use(methodOverride("_method"))
 app.use("/css",express.static("css"))
+app.use("/MoboTech/css",express.static("css"))
 app.use("/js",express.static("js"))
+app.use("/MoboTech/js",express.static("js"))
+app.use(sanitizer())
 
 var MobileSchema = new mongoose.Schema({
 	name:String,
@@ -30,9 +34,9 @@ app.get("/MoboTech/new",function(req,res){
 })
 
 app.post("/MoboTech",function(req,res){
-	var nm = req.body.name;
+	var nm = req.sanitize(req.body.name);
 	var img = req.body.image;
-	var desc = req.body.description;
+	var desc = req.sanitize(req.body.description);
 	mobile.create({name:nm,image:img,description:desc},function(err,mobile){
 		console.log("Successfully Created");
 		console.log(mobile);
@@ -40,12 +44,16 @@ app.post("/MoboTech",function(req,res){
 	res.redirect("/MoboTech");
 })
 
-/*app.get("/MoboTech/:id",function(req,res){
-	var _id = req.params.id;
-	mobile.findById(_id,function(err,mob){
-		res.render("info.ejs",{mobile:mob})
+app.get("/MoboTech/more-info/:id",function(req,res){
+	mobile.findById(req.params.id,function(err,mob){
+		if(err){
+			console.log("Error in fetching mobile.")
+		}
+		else{
+			res.render("more-info.ejs",{mobile:mob})
+		}
 	})
-})*/
+})
 
 app.listen("3000",function(){
 	console.log("Connected to Server.")

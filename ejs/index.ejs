@@ -5,7 +5,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">MoboTech</a>
+				<a class="navbar-brand" href="/MoboTech/">MoboTech</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="/MoboTech/new"> Add Tech </a></li>
@@ -20,11 +20,12 @@
 		</div>
 		<div class="row">
 			<% mob.forEach(function(mobile){ %>
+				<% var url = "/MoboTech/more-info/" + mobile._id %>
 				<div class="col-lg-3 col-sm-6 tac" style="margin-top:10px">
 					<div class="col-lg-12 tac entity">
 						<img class="thumbnails" src="<%= mobile.image %>"/>
 						<p><strong><%=  mobile.name %></strong></p>
-						<a href="#" class="btn btn-primary" role="button" style="margin-bottom:9px">More Info</a>
+						<a href="<%= url %>" class="btn btn-primary" role="button" style="margin-bottom:9px">More Info</a>
 					</div>
 				</div>
 			<% }) %>
