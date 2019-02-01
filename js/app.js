@@ -55,6 +55,42 @@ app.get("/MoboTech/more-info/:id",function(req,res){
 	})
 })
 
+app.get("/MoboTech/edit/:id",function(req,res){
+	mobile.findById(req.params.id,function(err,mob){
+		if(err){
+			console.log("Error in fetching the data.")
+		}
+		else{
+			res.render("edit.ejs",{mobile:mob})
+		}
+	})
+})
+
+app.put("/MoboTech/:id",function(req,res){
+	var name = req.sanitize(req.body.name)
+	var image = req.body.image
+	var desc = req.sanitize(req.body.description)
+	mobile.findByIdAndUpdate(req.params.id,{name:name,image:image,description:desc},function(err,mob){
+		if(err){
+			console.log("Error in Updating")
+		}
+		else{
+			res.redirect("/MoboTech")
+		}
+	})
+})
+
+app.delete("/MoboTech/:id",function(req,res){
+	mobile.findByIdAndRemove(req.params.id,function(err,mob){
+		if(err){
+			console.log("Error in fetching the data.")
+		}
+		else{
+			res.redirect("/MoboTech")
+		}
+	})
+})
+
 app.listen("3000",function(){
 	console.log("Connected to Server.")
 })

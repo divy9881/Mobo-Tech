@@ -22,9 +22,10 @@
 			<img src="<%= mobile.image %>" align="left" class="info-img"/>
 			<p class="desc" ><%= mobile.description %></p>
 			<br clear="left"/>
+			<form action="/MoboTech/<%= mobile._id %>?_method=delete" method="POST">
 			<div class="btn-grp">
-				<button type="button" class="btn btn-primary btn-space" >Edit</button>
-				<button type="button" class="btn btn-danger btn-space" >Delete</button>
+				<a href="/MoboTech/edit/<%= mobile._id %>"><button type="button" class="btn btn-primary btn-space" >Edit</button></a>
+				<button type="submit" class="btn btn-danger btn-space" >Delete</button>
 			</div>
 		</div>
 	</div>
